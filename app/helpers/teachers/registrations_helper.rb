@@ -1,0 +1,3 @@
+
+module Teachers::RegistrationsHelper
+end

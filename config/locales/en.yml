@@ -1,0 +1,15 @@
+# Sample localization file for English. Add more files in this directory for other locales.
+# See http://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
+
+en:
+  hello: "Hello world"
+  # trainers/profiles
+  avail_free: "free to travel at a moment's notice"
+  avail_week: "need one week to one month advanced notice"
+  avail_month: "need one month or more advanced notice"
+  expense_cover: "I can cover my own travel expenses (airfare only)"
+  expense_need: "I need my airfare paid for"
+  organizate_alliance: "Yoga Alliance"
+  organizate_wheel: "British Wheel of Yoga" 
+  organizate_kundalini: "International Kundalini Yoga Teachers Association"
+  organizate_other: "other (please only list those with online directories)"

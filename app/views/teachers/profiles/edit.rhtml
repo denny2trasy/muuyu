@@ -1,0 +1,97 @@
+<%= notice %>
+<h2>Update Profile</h2>
+
+<%= form_for(@teacher, :url => teachers_profile_path(@teacher),:html => {:multipart => true}) do |f|%>
+	<table>
+		<tr>
+			<td colspan="2"><h3>Personal Info</h3></td>
+		</tr>
+		<tr>
+			<td><%= f.label :first_name %></td>
+			<td><%= f.text_field :first_name %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :last_name %></td>
+			<td><%= f.text_field :last_name %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :short_biography%></td>
+			<td><%= f.text_area	:short_bio,	:rows => 8,	:cols =>100 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :philosophy_statement%></td>
+			<td><%= f.text_area	:philosophy,	:rows => 8,	:cols =>100 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :website_address %></td>
+			<td><%= f.text_field :weblink %></td>
+		</tr>
+		<tr>
+	    	<td><%= f.label :profile_photo %></td>
+	    	<td><%= image_tag @photo.data.url%><%= file_field :photo, :data %><%= hidden_field_tag "photo[a_type]",(@photo.a_type || "photo")%><%= hidden_field_tag "photo_id",@photo.id %></td>
+	  	</tr>
+		<tr>
+			<td><%= f.label :nationality %></td>
+			<td><%= f.text_field :nationality %></td>
+		</tr>
+		<tr>
+			<td colspan="2"><h3>Training and Experience</h3></td>
+		</tr>
+		<tr>
+			<td><%= f.label :yoga_style%></td>
+			<td>
+				<div id="yoga_style"><%= select_tag "teacher[yoga_style]",options_from_collection_for_select(ListItme.list_of_type("YogaStyle"),"id","value_en",YAML.load(current_teacher.yoga_style)),{:multiple => true} %></div>
+				
+				<%= text_field_tag "yoga_style_other","other"%><%= link_to "suggest","javascript:void(0)",:remote => true,:onclick=>"submit_yoga_style('teacher')"%>
+				<div id="other_message"></div>
+				</td>
+		</tr>
+		<tr>
+	    	<td><%= f.label :certification %></td>
+	    	<td><%=  @certification.try(:data_file_name)%><%= file_field :certification, :data %><%= hidden_field_tag "certification[a_type]",(@certification.a_type || "certification")%></td>
+	  	</tr>
+		<tr>
+			<td><%= f.label :organizations%></td>
+			<td>
+				
+				<% %w{organizate_alliance organizate_wheel organizate_kundalini organizate_other}.each do |item|%>
+					<%= f.check_box	item %> <%= I18n.t(item.to_sym)%><br />
+				<% end %>
+				
+				<%= f.text_field	:organization_other %>
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2"><h3>Travel Options</h3></td>
+		</tr>	
+
+		<tr>
+			<td><%= f.label :availability%></td>
+			<td>
+				<% %w{avail_free avail_week avial_month}.each do |item| %>
+					<%= f.radio_button(:availability,item)%><%= I18n.t(item.to_sym)%><br />
+				<% end %>
+			</td>
+		</tr>
+		<tr>
+			<td><%= f.label :travel_expenses%></td>
+			<td>
+				<% %w{expense_cover expense_need}.each do |item| %>
+					<%= f.radio_button(:travel_expenses,item)%><%= I18n.t(item.to_sym)%><br />
+				<% end %>
+			</td>
+		</tr>
+		
+		<tr>
+			<td colspan="2"><h3>Additional Experience</h3></td>
+		</tr>		
+		
+		<tr>
+	    	<td><%= f.label :resume %></td>
+	    	<td><%=  @resume.try(:data_file_name)%><%= file_field :resume, :data %><%= hidden_field_tag "resume[a_type]",(@resume.a_type || "resume")%></td>
+	  	</tr>
+
+	</table>	
+
+<%= f.submit "Update"%>
+<% end %>

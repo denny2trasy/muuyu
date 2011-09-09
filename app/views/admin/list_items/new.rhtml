@@ -1,0 +1,20 @@
+<div>
+	<h2>Create ListItem</h2>
+	<%= form_for(:list_itme,:as => :list_itme, :url => admin_list_items_path()) do |f|%>
+		<table>
+			<tr>
+				<td><%= f.label :list_type %></td>
+				<td><%= f.text_field :list_type %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :value_en %></td>
+				<td><%= f.text_field :value_en %></td>
+			</tr>
+			<tr>
+				<td><%= f.label :value_zh %></td>
+				<td><%= f.text_field :value_zh %></td>
+			</tr>
+		</table>
+		<%= submit_tage "Create"%>
+	<% end %>	
+</div>

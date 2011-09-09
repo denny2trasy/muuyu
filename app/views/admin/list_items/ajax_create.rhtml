@@ -1,0 +1,4 @@
+<% selected = (@flag == "student" ? current_student.yoga_style : current_teacher.yoga_style)%>
+<% lists = (selected.blank? ? [] : YAML.load(selected))%>
+
+<%= select_tag "#{@flag}[yoga_style]",options_from_collection_for_select(@items,"id","value_en",lists),{:multiple => true} %>

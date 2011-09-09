@@ -1,0 +1,20 @@
+This applicant is created for Muuyu!
+
+@author : Denny
+@create_at : 2011.9.9
+
+
+=== gem 
+	devise for author
+ 	paperclip for attachment
+
+=== learned
+	link_to remote and jquery ajax , maybe I can create one gem for select_other_tag
+	attachment for photo_tag
+	
+=== todo
+	mail config
+	how to update attachment with paperclip
+	
+
+

@@ -1,0 +1,62 @@
+<%= notice %>
+<h2>Update Profile</h2>
+
+
+<%= form_for(@student,:as => :student, :url => students_profile_path(@student),:method => :post,:multipart => true) do |f|%>
+	<table>
+		<tr>
+			<td><%= f.label :first_name %></td>
+			<td><%= f.text_field :first_name %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :last_name %></td>
+			<td><%= f.text_field :last_name %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :yoga_style%></td>
+			<td><div id="yoga_style"><%= select_tag "student[yoga_style]",options_from_collection_for_select(ListItme.list_of_type("YogaStyle"),"id","value_en",YAML.load(current_student.yoga_style)),{:multiple => true} %></div>
+			
+				<%= text_field_tag "yoga_style_other","other"%><%= link_to "suggest","javascript:void(0)",:remote => true,:onclick=>"submit_yoga_style('student')"%>
+				<div id="other_message"></div>				
+			</td>
+		</tr>
+		<tr>
+			<td><%= f.label :difficulty_level%></td>
+			<td><%= select_tag "student[difficult_level]",options_for_select(["beginner","junior","middle","senior","advanced"],current_student.difficult_level) %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :about_me%></td>
+			<td><%= f.text_area	:about_me,	:rows => 8,	:cols =>100 %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :primary_location%></td>
+			<td><%= select_tag "student[primary_location]",options_for_select(["Beijing","ShangHai"],@student.primary_location) %></td>
+		</tr>
+		<tr>
+			<td><%= f.label :traveling_location %></td>
+			<td><%= select_tag "student[travelling_location]",options_for_select(["Beijing","ShangHai"],@student.travelling_location) %></td>
+		</tr>
+		<tr>
+	    	<td><%= f.label :photo %></td>
+	    	<td>
+				<%= @photo.blank? ? "" : (image_tag @photo.data.url)%>
+				<%= file_field :photo,:data %><%= hidden_field_tag "photo[a_type]",(@photo.try(:a_type) || "photo")%>
+				<%= hidden_field_tag "photo_id",@photo.try(:id) %>
+			</td>
+	  	</tr>
+		<tr>
+			<td><%= f.label :address%></td>
+			<td><%= f.text_field :address%></td>
+		</tr>
+		<tr>
+			<td><%= f.label :phone%></td>
+			<td><%= f.text_field :phone%></td>
+		</tr>
+		<tr>
+			<td><%= f.label :preference%></td>
+			<td><%= f.text_field :preference%></td>
+		</tr>
+	</table>	
+
+<%= f.submit "Update"%>
+<% end %>
